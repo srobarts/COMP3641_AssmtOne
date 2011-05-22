@@ -29,10 +29,6 @@
       <param-name>password</param-name>
       <param-value>compjava</param-value>
     </init-param>
-    <init-param>
-      <param-name>linkText</param-name>
-      <param-value>Search Again</param-value>
-    </init-param>
   </servlet>
   
   <servlet>

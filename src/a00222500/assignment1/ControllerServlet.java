@@ -1,6 +1,9 @@
 package a00222500.assignment1;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.Iterator;
+import java.util.Vector;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
@@ -18,19 +21,22 @@ import javax.servlet.http.HttpSession;
 public class ControllerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	private String url;
-	private String driver;
-	private String username;
-	private String password;
+	private DatabaseBean db;
 
 	/**
 	 * servletInit() retrieves database information from web.xml and connects to database
 	 */
-	public void servletInit(){
+	public void init(ServletConfig config) throws ServletException {
+		super.init(config);
 		
-		DatabaseBean db = new DatabaseBean();
+		String url;
+		String driver;
+		String username;
+		String password;
 		
-		ServletConfig config = getServletConfig();
+		db = new DatabaseBean();
+		
+		config = getServletConfig();
 		driver = config.getInitParameter("driver");
 		url = config.getInitParameter("url");
 		username = config.getInitParameter("username");
@@ -54,6 +60,9 @@ public class ControllerServlet extends HttpServlet {
 		//initialize session variable for icon
 		HttpSession session = request.getSession();
 		session.setAttribute("icon", "seated");
+		String sqlResult = "";
+		//String sqlStatement =  request.getParameter("query");
+		
 		
 		String requestedAction = request.getParameter("action");
 		if(requestedAction.equals("query")) {
@@ -72,8 +81,54 @@ public class ControllerServlet extends HttpServlet {
 			
 		} else if(requestedAction.equals("newquery")) {
 			//query database and display result
+			
+			//gather select query information
+			/*String[] selectCheckboxes = request.getParameterValues("select");
+			if (selectCheckboxes != null)
+			{
+				for (int i = 0; i < selectCheckboxes.length; ++i)
+				{
+					String selectInputs = selectCheckboxes[i];
+				}
+			}*/
+			
+			String queryString = "SELECT * FROM stuff";
+			db.setQueryString(queryString);
+			@SuppressWarnings("rawtypes")
+			Vector tableData = db.runQuery();
+			@SuppressWarnings("rawtypes")
+			Iterator rows = tableData.iterator();
+			
+			//display headers
+			@SuppressWarnings("rawtypes")
+			Vector headerNames = null;
+			try {
+				headerNames = db.generateMetaData();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			@SuppressWarnings("rawtypes")
+			Iterator headers = headerNames.iterator();
+			
+			try {
+				sqlResult = a00222500.assignment1.ServletUtilities.getTableHTML(headers, rows);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			//close database connection
+			//db.cleanUp();
+			
+			//send results to results page
+			session.setAttribute("sqlResult", sqlResult);
+			String url2 = "/output.jsp";
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url2);
+			dispatcher.forward(request, response);
+			
+			//send results to results page
 			String url = "/WEB-INF/jsp/results.jsp";
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
+			dispatcher = getServletContext().getRequestDispatcher(url);
 			dispatcher.forward(request, response);
 		}
 		
