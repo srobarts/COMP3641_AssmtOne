@@ -60,7 +60,7 @@ public class DatabaseBean
 		return (password);
 	}
 
-	public void connect()
+	public void connect(String url, String username, String password, String driver)
 	{
 		try {
 			Class.forName( driver );

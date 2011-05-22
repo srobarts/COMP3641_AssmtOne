@@ -19,17 +19,23 @@
 			<h2>Please choose your operation from the choices below:</h2>
 			
 			<div id="stylized" class="myform">
-				<form id="form" name="form" method="post" action="WEB-INF/jsp/query.jsp">
+				<form id="form" name="form" method="post" action="query_database">
 					<div id="radioblock">
-						<img src="images/system-search.png" /><input type="radio" name="group1" value="search"  />Search Records<br /><br />
-						<img src="images/document-new.png" /><input type="radio" name="group1" value="add"  />Add a Record
+						<div id="left_float">
+							<img src="images/system-search.png" /><input type="radio" name="action" value="query"  />Query Records
+						</div>
+						<div id="right_float">
+							<img src="images/document-new.png" /><input type="radio" name="action" value="add"  />Add a Record
+						</div>
 					</div>
 					<button type="submit">Submit</button>
-					<div class="spacer"></div>
 				</form>
 			</div>
+			<div id="spacer">&nbsp;</div>
 		</div>
 		
+		
+
 		<div id="footer">
 			<div id="footer_links"><a href="./start.html">Start Page</a>&nbsp;|&nbsp;<a href="./about.html">About</a></div>
 			<p>Copyright &copy;2011, All rights reserved<br /> Scott Robarts, COMP 3641</p>

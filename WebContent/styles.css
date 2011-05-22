@@ -1,7 +1,6 @@
 @CHARSET "UTF-8";
 
 html, body{
-	height:100%;
 	font-family:"Lucida Grande", "Lucida Sans Unicode", Verdana, Arial, Helvetica, sans-serif;
 	background-color:#eee;
 	font-size:12px;
@@ -32,10 +31,9 @@ a:hover {
 
 /* ----------- Wrapper -----------*/
 #wrapper {
-	position:relative;
+	width:750px;
+	margin:0 auto;
 	width:1000px;
-	margin: 0 auto;
-	height:auto;
 	text-align:left;
 	background-color:#fff;
 	text-align:left;
@@ -46,7 +44,6 @@ a:hover {
 
 /* ----------- Header ------------ */
 #header {
-	position: relative;
 	background-color: #FFFFFF;
     height: 150px;
     padding-top: 10px;
@@ -78,8 +75,7 @@ img.header_image {
 /* ---------- Content ------------ */
 
 #content {
-	position:relative;
-	height:400px;
+	float:left;
 	width:90%;
 	padding-top:5px;
 	padding-left:40px;
@@ -111,15 +107,21 @@ img.header_image {
 	text-align:center;
 }
 
-.left_float {
+#left_float {
 	float:left;
 	width:50%;
 }
 
+#right_float {
+	float:right;
+	width:50%;
+}
+
+
+
 /* ---------- Error Output -------- */
 
 #error_output {
-	position:relative; 
 	float:left;
 	display:block; 
 	overflow:visible;
@@ -161,14 +163,13 @@ table, th, td {
 
 
 #footer {	
-	position:relative;
+	clear:both;
 	background-color: #777777;
     border: 1px solid #777777;
     color: #EFEFEF;
     height: 75px;
     padding-top: 10px;
     text-align: center;
-    width: 100%;
 }
 
 #footer_links {
@@ -184,20 +185,25 @@ table, th, td {
 	color:navy;
 }
 
+#spacer {
+	height:10px;
+	width:100%;
+}
+
 
 /* ----------- My Form ----------- */
 .myform {
 	margin:0 auto;
-	width:400px;
+	width:500px;
 	padding:14px;
 	position:relative;
-	top:20px;
+	/* top:20px; */
 }
 
 #radioblock {
-	float:left;
-	width:250px;
-	height:150px;
+	float: left;
+    height: 80px;
+    width: 500px;
 }
 
 /* ----------- stylized ----------- */
@@ -269,3 +275,103 @@ table, th, td {
 	font-weight:bold;
 }
 
+/* ------- queryinput ------ */
+
+form#two {
+	background:	url(cssplay/bg.png) center top no-repeat;
+	width:469px; 
+	height: 754px;
+	padding:5px;
+	margin:0 auto;
+	font-family: "Trebuchet MS", Trebuchet, Verdana, Arial, Helvetica, sans-serif;	
+	font-size: 76%;	
+}
+
+form#two p {
+	color:#333;
+	font-size:12px;
+}
+
+form#two fieldset {
+	width:430px; 
+	display:block; 
+	border:1px solid #b7ddf2; 
+	padding:5px; 
+	margin-bottom:0.5em; 
+	margin-left: 13px;
+	line-height:1.2em;
+}
+
+form#two fieldset#opt {
+	/*background:#ff6705;*/
+}
+
+form#two legend {
+	font-size:1.3em; 
+	font-weight:bold; 
+	color: #003399;
+	margin: 0 0 5px 10px; 
+	height: 24px;
+	line-height: 24px;
+	width:157px; 
+	border: 1px solid #b7ddf2;
+	background-color:#ebf4fb;
+	padding: 0 5px;
+}
+
+form#two label {
+	clear:left; 
+	display:block; 
+	float:left; 
+	width:100px; 
+	text-align:right; 
+	padding-right:10px; 
+	color: #003399; 
+	margin-bottom:0.5em;
+	font-size:13px;
+}
+
+form#two input {
+	border:1px solid #b7ddf2; 
+	padding:0 2px;; 
+	margin-bottom:0.3em;
+}
+
+form#two select {
+	margin-left:0.5em;
+}
+
+form#two textarea {
+	width:410px; 
+	height:auto;
+	border:1px solid #b7ddf2; 
+	padding:0.5em; 
+	overflow:auto; 
+}
+
+form#two option {
+	background:#003399; 
+	color:#fff;
+}
+
+form#two #button1 {
+    background-color: #CCCCCC;
+    border: medium none;
+    color: #003399;
+    display: inline;
+    font-size: 13px;
+    font-weight: bold;
+    height: 27px;
+    line-height: 27px;
+    margin-left: 15em;
+    text-align: center;
+    width: 95px;
+}
+
+form#two #button1:hover, form#two #button2:hover {
+	color:#FF6705;
+}
+
+p {
+	margin: 4px 0;
+}

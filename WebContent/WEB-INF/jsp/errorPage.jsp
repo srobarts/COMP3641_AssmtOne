@@ -1,6 +1,6 @@
 
 
-<jsp:include page="header.jsp"></jsp:include>
+<jsp:include page="header.html"></jsp:include>
 
 	<%@ page isErrorPage="true" import="java.io.*" %>
 	
@@ -33,6 +33,5 @@
 			<h2 class="link"><a href="Lab04.jsp"><%= pageContext.getServletConfig().getInitParameter("linkText") %></a></h2>
 		</div> <!-- error_output -->
 	</div> <!-- content -->
-
-
-<jsp:include page="footer.jsp"></jsp:include>
+	
+<jsp:include page="footer.html"></jsp:include>
