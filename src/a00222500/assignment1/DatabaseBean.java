@@ -65,6 +65,7 @@ public class DatabaseBean
 		try {
 			Class.forName( driver );
 			con = DriverManager.getConnection( url, username, password );
+			//stmt = con.createStatement();
 
 		} catch(ClassNotFoundException ex) {
 			ex.printStackTrace();
@@ -92,6 +93,7 @@ public class DatabaseBean
 		int numCols;
 
 		try {
+			System.out.print(con);
 			stmt = con.createStatement();
 
 			queryResults = stmt.executeQuery (queryString);

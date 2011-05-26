@@ -113,7 +113,6 @@ public class ControllerServlet extends HttpServlet {
 			try {
 				sqlResult = a00222500.assignment1.ServletUtilities.getTableHTML(headers, rows);
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
