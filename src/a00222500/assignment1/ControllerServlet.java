@@ -165,8 +165,39 @@ public class ControllerServlet extends HttpServlet {
 			System.out.println("delete " + memberID);
 			//delete the record indicated by the memberID
 			db.deleteRecord(memberID);
-		
-		
+			
+			//re-display page with same query as previous
+			@SuppressWarnings("rawtypes")
+			Vector tableData = db.runQuery();
+			@SuppressWarnings("rawtypes")
+			Iterator rows = tableData.iterator();
+			
+			//display headers
+			@SuppressWarnings("rawtypes")
+			Vector headerNames = null;
+			try {
+				headerNames = db.generateMetaData();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			@SuppressWarnings("rawtypes")
+			Iterator headers = headerNames.iterator();
+			
+			try {
+				sqlResult = a00222500.assignment1.ServletUtilities.getTableHTML(headers, rows);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
+			//close database connection
+			//db.cleanUp();
+			
+			//send results to results page
+			session.setAttribute("sqlResult", sqlResult);
+			String url2 = "/WEB-INF/jsp/output.jsp";
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url2);
+			dispatcher.forward(request, response);
+			
 		}
 		
 		
