@@ -43,7 +43,11 @@ public class ControllerServlet extends HttpServlet {
 		password = config.getInitParameter("password");
 		
 		//connect to database
-		db.connect(url, username, password, driver);		
+		db.connect(url, username, password, driver);	
+		
+		String create_table_query = db.create_table_query();
+		db.create_table(create_table_query);
+		
 	}
        
     /**
@@ -69,14 +73,14 @@ public class ControllerServlet extends HttpServlet {
 			//query the database - send the user back to the view (query.jsp)
 			String url = "/WEB-INF/jsp/query.jsp";
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
-			dispatcher.include(request, response);
+			dispatcher.forward(request, response);
 			//note - include call will boomerang control back to servlet when jsp is done processing
 			
 		} else if(requestedAction.equals("add")) {
 			//update the database
 			String url = "/WEB-INF/jsp/addrecord.jsp";
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
-			dispatcher.include(request, response);
+			dispatcher.forward(request, response);
 			//see note about include call above
 			
 		} else if(requestedAction.equals("newquery")) {
@@ -92,7 +96,7 @@ public class ControllerServlet extends HttpServlet {
 				}
 			}*/
 			
-			String queryString = "SELECT * FROM stuff";
+			String queryString = "SELECT * FROM a00222500_Members";
 			db.setQueryString(queryString);
 			@SuppressWarnings("rawtypes")
 			Vector tableData = db.runQuery();
@@ -121,15 +125,50 @@ public class ControllerServlet extends HttpServlet {
 			
 			//send results to results page
 			session.setAttribute("sqlResult", sqlResult);
-			String url2 = "/output.jsp";
+			String url2 = "/WEB-INF/jsp/output.jsp";
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url2);
 			dispatcher.forward(request, response);
 			
-			//send results to results page
-			String url = "/WEB-INF/jsp/results.jsp";
-			dispatcher = getServletContext().getRequestDispatcher(url);
-			dispatcher.forward(request, response);
+		} else if(requestedAction.equals("addrecord")) {
+			//user is requesting to add a new record to the database
+			//data is being passed in from addrecord.jsp
+			String firstName = request.getParameter("firstName");
+			String lastName = request.getParameter("lastName");
+			String address = request.getParameter("address");
+			String city	 = request.getParameter("city");
+			String country = request.getParameter("country");
+			String code = request.getParameter("code");
+			String phoneNumber = request.getParameter("phoneNumber");
+			String email = request.getParameter("email");
+			
+			String query = "INSERT INTO a00222500_Members VALUES " +
+					"('" + firstName + "'," +
+					"'" + lastName + "'," +
+					"'" + address + "'," +
+					"'" + city + "'," +
+					"'" + country + "'," +
+					"'" + code + "'," +
+					"'" + phoneNumber + "'," +
+					"'" + email + "')";
+			
+			//String query = "DROP TABLE a00222500_Members";
+			System.out.println(query);
+			
+			db.insertRecord(query);			
+		} else if(requestedAction.equals("modify")) {
+			int memberID = Integer.parseInt(request.getParameter("memberID"));
+			System.out.println("modify " + memberID);
+			//get and display the record indicated by the memberID
+			
+		} else if(requestedAction.equals("delete")) {
+			int memberID = Integer.parseInt(request.getParameter("memberID"));
+			System.out.println("delete " + memberID);
+			//delete the record indicated by the memberID
+			db.deleteRecord(memberID);
+		
+		
 		}
+		
 		
 		
 		

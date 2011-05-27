@@ -137,7 +137,6 @@ table, th, td {
 }
 
 #tablecontent {
-	left: 90px;
     padding-bottom: 30px;
     padding-top: 10px;
     position: relative;
@@ -241,7 +240,7 @@ table, th, td {
 	font-size:12px;
 	font-weight:normal;
 	text-align:left;
-	width:240px;
+	width:340px;
 }
 
 #stylized input{

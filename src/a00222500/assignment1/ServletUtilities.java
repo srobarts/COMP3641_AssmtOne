@@ -1,14 +1,12 @@
 package a00222500.assignment1;
 
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.Iterator;
 import java.util.Vector;
 
 public class ServletUtilities {
 	
-	public static String getHTMLTable(ResultSet results) throws SQLException {
+	/*public static String getHTMLTable(ResultSet results) throws SQLException {
 		  StringBuffer htmlRows = new StringBuffer();
 		  ResultSetMetaData metaData = results.getMetaData();
 		  int columnCount = metaData.getColumnCount();
@@ -28,7 +26,7 @@ public class ServletUtilities {
 		  htmlRows.append("</tr>");
 		  htmlRows.append("</table>");
 		  return htmlRows.toString();
-	  }
+	  }*/
 	
 	public static String getTableHTML(@SuppressWarnings("rawtypes") Iterator headers, @SuppressWarnings("rawtypes") Iterator rows) throws SQLException {
 		StringBuffer htmlRows = new StringBuffer();
@@ -37,7 +35,9 @@ public class ServletUtilities {
 		
 		//display columns
 		int count = 0;
-		while (rows.hasNext()) {
+		int fieldCount = 1;
+		String memberID = "";
+		while (rows.hasNext()) {			
 			if (count % 2 == 0) {
 				htmlRows.append("<tr bgcolor=\"#c3f3c3\">");
 			} else {
@@ -49,8 +49,21 @@ public class ServletUtilities {
 			Iterator fields = singleRow.iterator();
 			while (fields.hasNext()) {
 				String field = (String)fields.next();
+				if(fieldCount == 1){ 
+					//if we are looking at the first field it is the memberID
+					memberID = field; 
+				}
 				htmlRows.append("<td>" + field + "</td>");
+				fieldCount++;
 			}
+			//reset field count
+			fieldCount = 1;
+			htmlRows.append("<form id=\"form\" name=\"form\" method=\"post\" action=\"query_database\">");
+			htmlRows.append("<td><input type=\"radio\" name=\"action\" value=\"modify\" />Modify</td>");
+			htmlRows.append("<td><input type=\"radio\" name=\"action\" value=\"delete\" />Delete</td>");
+			htmlRows.append("<input type=\"hidden\" name=\"memberID\" value=\"" + memberID + "\" />");
+			htmlRows.append("<td><button type=\"submit\">Submit</button></td>");
+			htmlRows.append("</form>");
 			htmlRows.append("</tr>");
 			count++;
 		}
