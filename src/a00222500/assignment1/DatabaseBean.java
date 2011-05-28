@@ -155,6 +155,29 @@ public class DatabaseBean
 		}
 	}
 	
+	public void updateRecord(int id, String firstName, String lastName, String address, 
+		String city, String country, String code, String phoneNumber, String email) {
+		
+		//create update statement
+		try {
+			stmt = con.createStatement();
+			String update_query = "UPDATE a00222500_Members" +
+								" SET firstName = '" + firstName + "'" + 
+								", lastName = '" + lastName + "'" +
+								", address = '" + address + "'" +
+								", city = '" + city + "'" +
+								", country = '" + country + "'" +
+								", code = '" + code + "'" +
+								", phoneNumber = '" + phoneNumber + "'" +
+								", email = '" + email + "'" +
+								" WHERE memberID = " + id;
+			System.out.println(update_query);
+			stmt.executeUpdate(update_query);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}	
+	}
+	
 	public void deleteRecord(int memberID) {
 		try {
 			stmt = con.createStatement();

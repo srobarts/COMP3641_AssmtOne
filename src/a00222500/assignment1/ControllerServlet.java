@@ -154,11 +154,87 @@ public class ControllerServlet extends HttpServlet {
 			//String query = "DROP TABLE a00222500_Members";
 			System.out.println(query);
 			
-			db.insertRecord(query);			
+			db.insertRecord(query);	
+			
 		} else if(requestedAction.equals("modify")) {
 			int memberID = Integer.parseInt(request.getParameter("memberID"));
 			System.out.println("modify " + memberID);
+			
 			//get and display the record indicated by the memberID
+			String queryString = "SELECT * FROM a00222500_Members WHERE memberID = " + memberID;
+			db.setQueryString(queryString);
+			@SuppressWarnings("rawtypes")
+			Vector tableData = db.runQuery();
+			@SuppressWarnings("rawtypes")
+			Iterator rows = tableData.iterator();
+			
+			//display headers
+			@SuppressWarnings("rawtypes")
+			Vector headerNames = null;
+			try {
+				headerNames = db.generateMetaData();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			@SuppressWarnings("rawtypes")
+			Iterator headers = headerNames.iterator();
+			
+			try {
+				sqlResult = a00222500.assignment1.ServletUtilities.getUpdateTableHTML(headers, rows);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
+			//send results to results page
+			session.setAttribute("sqlResult", sqlResult);
+			String url2 = "/WEB-INF/jsp/update.jsp";
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url2);
+			dispatcher.forward(request, response);
+			
+			
+		} else if(requestedAction.equals("updaterecord")) {
+			int id = Integer.parseInt(request.getParameter("memberID"));
+			String firstName = request.getParameter("firstName");
+			String lastName = request.getParameter("lastName");
+			String address = request.getParameter("address");
+			String city = request.getParameter("city");
+			String country = request.getParameter("country");
+			String code = request.getParameter("code");
+			String phoneNumber = request.getParameter("phoneNumber");
+			String email = request.getParameter("email");
+			
+			//tuck away into database
+			db.updateRecord(id, firstName, lastName, address, city, country, code, phoneNumber, email);			
+			
+			//display output to show that record has been updated
+			//re-display page with same query as previous
+			@SuppressWarnings("rawtypes")
+			Vector tableData = db.runQuery();
+			@SuppressWarnings("rawtypes")
+			Iterator rows = tableData.iterator();
+			
+			//display headers
+			@SuppressWarnings("rawtypes")
+			Vector headerNames = null;
+			try {
+				headerNames = db.generateMetaData();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			@SuppressWarnings("rawtypes")
+			Iterator headers = headerNames.iterator();
+			
+			try {
+				sqlResult = a00222500.assignment1.ServletUtilities.getTableHTML(headers, rows);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
+			//send results to results page
+			session.setAttribute("sqlResult", sqlResult);
+			String url2 = "/WEB-INF/jsp/output.jsp";
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url2);
+			dispatcher.forward(request, response);			
 			
 		} else if(requestedAction.equals("delete")) {
 			int memberID = Integer.parseInt(request.getParameter("memberID"));
@@ -188,9 +264,6 @@ public class ControllerServlet extends HttpServlet {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-			
-			//close database connection
-			//db.cleanUp();
 			
 			//send results to results page
 			session.setAttribute("sqlResult", sqlResult);
