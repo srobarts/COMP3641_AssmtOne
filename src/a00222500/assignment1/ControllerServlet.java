@@ -124,6 +124,7 @@ public class ControllerServlet extends HttpServlet {
 			//db.cleanUp();
 			
 			//send results to results page
+			session.setAttribute("queryString", queryString);
 			session.setAttribute("sqlResult", sqlResult);
 			String url2 = "/WEB-INF/jsp/output.jsp";
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url2);
@@ -132,6 +133,14 @@ public class ControllerServlet extends HttpServlet {
 		} else if(requestedAction.equals("addrecord")) {
 			//user is requesting to add a new record to the database
 			//data is being passed in from addrecord.jsp
+			
+			//form validation error variable initialize
+			Boolean validationError = false;
+			
+			
+			
+			
+			
 			String firstName = request.getParameter("firstName");
 			String lastName = request.getParameter("lastName");
 			String address = request.getParameter("address");
@@ -186,6 +195,7 @@ public class ControllerServlet extends HttpServlet {
 			}
 			
 			//send results to results page
+			session.setAttribute("queryString", queryString);
 			session.setAttribute("sqlResult", sqlResult);
 			String url2 = "/WEB-INF/jsp/update.jsp";
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url2);
@@ -231,6 +241,8 @@ public class ControllerServlet extends HttpServlet {
 			}
 			
 			//send results to results page
+			String queryString = db.getQueryString();
+			session.setAttribute("queryString", queryString);
 			session.setAttribute("sqlResult", sqlResult);
 			String url2 = "/WEB-INF/jsp/output.jsp";
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url2);
@@ -266,6 +278,8 @@ public class ControllerServlet extends HttpServlet {
 			}
 			
 			//send results to results page
+			String queryString = db.getQueryString();
+			session.setAttribute("queryString", queryString);
 			session.setAttribute("sqlResult", sqlResult);
 			String url2 = "/WEB-INF/jsp/output.jsp";
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url2);

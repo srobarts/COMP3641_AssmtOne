@@ -8,7 +8,7 @@
 	<h2>Please fill in the form below to add to database:</h2>
 		
 	<div id="stylized" class="myform">
-		<form id="form" name="form" method="post" action="query_database">
+		<form id="form" name="form" method="post" action="query_database" onSubmit="return submitIt(this)">
 		<input name="action" type="hidden" value="addrecord" />
 		
 			<div>

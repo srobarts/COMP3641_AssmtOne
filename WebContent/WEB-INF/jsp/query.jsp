@@ -13,31 +13,31 @@
 				    <legend>SELECT</legend>
 				    <p>Choose what items to include in SELECT ...</p><br />
 				    <label for="userid">User ID: </label>
-				    <input name="select" id="userid" type="checkbox" value="userid" tabindex="20" />
+				    <input name="select" id="userid" type="checkbox" checked="checked" value="userid" tabindex="20" />
 				    <br />
 				    <label for="firstname">firstname : </label> 
-				    <input name="select" id="firstname" type="checkbox" value="firstname" tabindex="21" />
+				    <input name="select" id="firstname" type="checkbox" checked="checked" value="firstname" tabindex="21" />
 				    <br />
 				    <label for="lastname">lastname : </label> 
-				    <input name="select" id="lastname" type="checkbox" value="lastname" tabindex="22" />
+				    <input name="select" id="lastname" type="checkbox" checked="checked" value="lastname" tabindex="22" />
 				    <br />
 				    <label for="address">address : </label> 
-				    <input name="select" id="address" type="checkbox" value="address" tabindex="23" />
+				    <input name="select" id="address" type="checkbox" checked="checked" value="address" tabindex="23" />
 				    <br />
 				    <label for="city">city : </label> 
-				    <input name="select" id="city" type="checkbox" value="city" tabindex="23" />
+				    <input name="select" id="city" type="checkbox" checked="checked" value="city" tabindex="23" />
 				    <br />
 				    <label for="country">country : </label> 
-				    <input name="select" id="country" type="checkbox" value="country" tabindex="23" />
+				    <input name="select" id="country" type="checkbox" checked="checked" value="country" tabindex="23" />
 				    <br />
 				    <label for="postalcode">postalcode : </label> 
-				    <input name="select" id="postalcode" type="checkbox" value="postalcode" tabindex="23" />
+				    <input name="select" id="postalcode" type="checkbox" checked="checked" value="postalcode" tabindex="23" />
 				    <br />
 				    <label for="phone">phone : </label> 
-				    <input name="select" id="phone" type="checkbox" value="phone" tabindex="23" />
+				    <input name="select" id="phone" type="checkbox" checked="checked" value="phone" tabindex="23" />
 				    <br />
 				    <label for="email">phone : </label> 
-				    <input name="select" id="email" type="checkbox" value="email" tabindex="23" />
+				    <input name="select" id="email" type="checkbox" checked="checked" value="email" tabindex="23" />
 				    <br />
 				</fieldset>
 				
@@ -55,10 +55,10 @@
 				    <input name="orderby" id="userid" type="checkbox" value="userid" tabindex="20" />
 				    <br />
 				    <label for="firstname">firstname : </label> 
-				    <input name="orderby" id="firstname" type="checkbox" value="firstname" tabindex="21" />
+				    <input name="orderby" id="firstname" type="checkbox" checked="checked" value="firstname" tabindex="21" />
 				    <br />
 				    <label for="lastname">lastname : </label> 
-				    <input name="orderby" id="lastname" type="checkbox" value="lastname" tabindex="22" />
+				    <input name="orderby" id="lastname" type="checkbox" checked="checked" value="lastname" tabindex="22" />
 				    <br />
 				    <label for="address">address : </label> 
 				    <input name="orderby" id="address" type="checkbox" value="address" tabindex="23" />

@@ -9,7 +9,15 @@ public class ServletUtilities {
 	public static String getTableHTML(@SuppressWarnings("rawtypes") Iterator headers, @SuppressWarnings("rawtypes") Iterator rows) throws SQLException {
 		StringBuffer htmlRows = new StringBuffer();
 		
-		htmlRows.append("<table cellpadding=\"5\" border=\"1\">");
+		htmlRows.append("<div id=\"tablecontent\"><table cellpadding=\"5\" border=\"1\" >");
+		
+		htmlRows.append("<tr>");
+		while (headers.hasNext()) {
+			String title = (String)headers.next();
+			htmlRows.append("<th>" + title + "</th>");
+		}
+		htmlRows.append("<th colspan=\"3\">Actions</th>");
+		htmlRows.append("</tr>");
 		
 		//display columns
 		int count = 0;
@@ -36,8 +44,8 @@ public class ServletUtilities {
 			}
 			//reset field count
 			fieldCount = 1;
-			htmlRows.append("<form id=\"form\" name=\"form\" method=\"post\" action=\"query_database\">");
-			htmlRows.append("<td><input type=\"radio\" name=\"action\" value=\"modify\" />Modify</td>");
+			htmlRows.append("<form id=\"two\" name=\"form\" method=\"post\" action=\"query_database\">");
+			htmlRows.append("<td><input type=\"radio\" name=\"action\" value=\"modify\" />Update</td>");
 			htmlRows.append("<td><input type=\"radio\" name=\"action\" value=\"delete\" />Delete</td>");
 			htmlRows.append("<input type=\"hidden\" name=\"memberID\" value=\"" + memberID + "\" />");
 			htmlRows.append("<td><button type=\"submit\">Submit</button></td>");
@@ -45,7 +53,7 @@ public class ServletUtilities {
 			htmlRows.append("</tr>");
 			count++;
 		}
-		htmlRows.append("</table>");
+		htmlRows.append("</table></div>");
 		return htmlRows.toString();
 			
 	}
@@ -64,6 +72,8 @@ public class ServletUtilities {
 		String code = "";
 		String phoneNumber = "";
 		String email = "";
+		
+
 	
 		//get columns
 		@SuppressWarnings("rawtypes")

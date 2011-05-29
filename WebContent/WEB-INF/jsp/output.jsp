@@ -8,9 +8,9 @@
 	<br />
 	<h2>Here are the results of your query:</h2>
 	
-	<jsp:useBean id="databaseBean" class="a00222500.assignment1.DatabaseBean" />
+	<jsp:useBean id="databaseBean" class="a00222500.assignment1.DatabaseBean" scope="session" />
 	
-	<p>Query: <%= databaseBean.getQueryString() %></p>
+	<p>Query: <%= session.getAttribute("queryString") %></p>
 	
 		<div id="tablecontent">
 			${sqlResult }
