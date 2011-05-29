@@ -90,7 +90,7 @@
 				</fieldset>
 				
 				<p>
-  					<input id="button1" type="submit" value="Send" /> 
+  					<input id="button1" type="submit" value="Search" /> 
   				</p>
 				
 			</form>
