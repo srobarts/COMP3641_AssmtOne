@@ -146,6 +146,21 @@ public class DatabaseBean
 		return vRows;
 	}
 	
+	public int getMaxID() {
+		ResultSet rs = null;
+		int maxID = 0;
+		try {
+			stmt = con.createStatement();
+			rs = stmt.executeQuery("select max(id) from topic");
+			while(rs.next()) {
+				maxID = rs.getInt("memberID");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return maxID;
+	}
+	
 	public void insertRecord(String query) {
 		try {
 			stmt = con.createStatement();

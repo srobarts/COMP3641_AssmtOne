@@ -12,6 +12,7 @@
 	
 	<p>Query: <%= session.getAttribute("queryString") %></p>
 	
+		
 		<div id="tablecontent">
 			${sqlResult }
 		</div>

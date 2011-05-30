@@ -3,6 +3,8 @@ package a00222500.assignment1;
 import java.sql.SQLException;
 import java.util.Iterator;
 import java.util.Vector;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class ServletUtilities {
 	
@@ -118,6 +120,13 @@ public class ServletUtilities {
 
 		return htmlRows.toString();
 		
+	}
+	
+	public static boolean isValidInput(String input, String pattern) {
+		Pattern patt = Pattern.compile(pattern);
+		Matcher match = patt.matcher(input);
+		
+		return match.matches();
 	}
 
 }

@@ -22,6 +22,9 @@ public class ControllerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private DatabaseBean db;
+	private final String REG_PHONE = "(\\()?(\\d{3})(\\))?([\\.\\-\\/ ])?(\\d{3})([\\.\\-\\/ ])?(\\d{4})";
+	private final String REG_EMAIL = "(\\w)([\\.-]?\\w+)*@(\\w+)([\\.-]?\\w+)*(\\.\\w{2,3})";
+	private final String REG_STRING = "^[a-zA-Z']{1,40}$";
 
 	/**
 	 * servletInit() retrieves database information from web.xml and connects to database
@@ -132,14 +135,8 @@ public class ControllerServlet extends HttpServlet {
 			
 		} else if(requestedAction.equals("addrecord")) {
 			//user is requesting to add a new record to the database
-			//data is being passed in from addrecord.jsp
-			
-			//form validation error variable initialize
-			Boolean validationError = false;
-			
-			
-			
-			
+			//data is being passed in from addrecord.jsp	
+			int maxID = 0;
 			
 			String firstName = request.getParameter("firstName");
 			String lastName = request.getParameter("lastName");
@@ -150,20 +147,72 @@ public class ControllerServlet extends HttpServlet {
 			String phoneNumber = request.getParameter("phoneNumber");
 			String email = request.getParameter("email");
 			
-			String query = "INSERT INTO a00222500_Members VALUES " +
-					"('" + firstName + "'," +
-					"'" + lastName + "'," +
-					"'" + address + "'," +
-					"'" + city + "'," +
-					"'" + country + "'," +
-					"'" + code + "'," +
-					"'" + phoneNumber + "'," +
-					"'" + email + "')";
+			if( ServletUtilities.isValidInput(phoneNumber, REG_PHONE) && 
+					ServletUtilities.isValidInput(email, REG_EMAIL) &&
+						ServletUtilities.isValidInput(firstName, REG_STRING) &&
+							ServletUtilities.isValidInput(lastName, REG_STRING) &&
+								 	ServletUtilities.isValidInput(city, REG_STRING) &&
+								 		ServletUtilities.isValidInput(country, REG_STRING) ) {
+				System.out.println("valid");
+				
+				maxID = db.getMaxID();
+				maxID++;
+				
+				String query = "INSERT INTO a00222500_Members VALUES " +
+								"('" + firstName + "'," +
+								"'" + lastName + "'," +
+								"'" + address + "'," +
+								"'" + city + "'," +
+								"'" + country + "'," +
+								"'" + code + "'," +
+								"'" + phoneNumber + "'," +
+								"'" + email + "')";
+		
+				//String query = "DROP TABLE a00222500_Members";
+				
+				db.insertRecord(query);		
 			
-			//String query = "DROP TABLE a00222500_Members";
-			System.out.println(query);
+				//display output to show that record has been created
+				String queryString = "SELECT * FROM a00222500_Members WHERE memberID = " + maxID;
+				db.setQueryString(queryString);
+				@SuppressWarnings("rawtypes")
+				Vector tableData = db.runQuery();
+				@SuppressWarnings("rawtypes")
+				Iterator rows = tableData.iterator();
+				
+				//display headers
+				@SuppressWarnings("rawtypes")
+				Vector headerNames = null;
+				try {
+					headerNames = db.generateMetaData();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				@SuppressWarnings("rawtypes")
+				Iterator headers = headerNames.iterator();
+				
+				try {
+					sqlResult = a00222500.assignment1.ServletUtilities.getTableHTML(headers, rows);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				
+				//send results to results page
+				session.setAttribute("queryString", queryString);
+				session.setAttribute("sqlResult", sqlResult);
+				String url2 = "/WEB-INF/jsp/output.jsp";
+				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url2);
+				dispatcher.forward(request, response);
 			
-			db.insertRecord(query);	
+			} else {
+				System.out.println("invalid");
+				//display message saying that input was invalid
+				session.setAttribute("resultCode", false);
+				String url2 = "/WEB-INF/jsp/output.jsp";
+				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url2);
+				dispatcher.forward(request, response);
+			}
+			
 			
 		} else if(requestedAction.equals("modify")) {
 			int memberID = Integer.parseInt(request.getParameter("memberID"));
