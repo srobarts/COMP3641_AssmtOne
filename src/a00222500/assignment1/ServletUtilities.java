@@ -47,7 +47,7 @@ public class ServletUtilities {
 			//reset field count
 			fieldCount = 1;
 			htmlRows.append("<form id=\"two\" name=\"form\" method=\"post\" action=\"query_database\">");
-			htmlRows.append("<td><input type=\"radio\" name=\"action\" value=\"modify\" />Update</td>");
+			htmlRows.append("<td><input type=\"radio\" name=\"action\" value=\"modify\" checked=\"checked\" />Update</td>");
 			htmlRows.append("<td><input type=\"radio\" name=\"action\" value=\"delete\" />Delete</td>");
 			htmlRows.append("<input type=\"hidden\" name=\"memberID\" value=\"" + memberID + "\" />");
 			htmlRows.append("<td><button type=\"submit\">Submit</button></td>");

@@ -52,31 +52,31 @@
 				    <legend>ORDER BY</legend>
 				    <p>Choose what items to ORDER BY ...</p><br />
 				    <label for="userid">User ID: </label>
-				    <input name="orderby" id="userid" type="checkbox" value="userid" tabindex="20" />
+				    <input name="orderby" id="userid" type="radio" value="userid" tabindex="20" />
 				    <br />
 				    <label for="firstname">firstname : </label> 
-				    <input name="orderby" id="firstname" type="checkbox" checked="checked" value="firstname" tabindex="21" />
+				    <input name="orderby" id="firstname" type="radio" value="firstname" tabindex="21" />
 				    <br />
 				    <label for="lastname">lastname : </label> 
-				    <input name="orderby" id="lastname" type="checkbox" checked="checked" value="lastname" tabindex="22" />
+				    <input name="orderby" id="lastname" type="radio" checked="checked" value="lastname" tabindex="22" />
 				    <br />
 				    <label for="address">address : </label> 
-				    <input name="orderby" id="address" type="checkbox" value="address" tabindex="23" />
+				    <input name="orderby" id="address" type="radio" value="address" tabindex="23" />
 				    <br />
 				    <label for="city">city : </label> 
-				    <input name="orderby" id="city" type="checkbox" value="city" tabindex="23" />
+				    <input name="orderby" id="city" type="radio" value="city" tabindex="23" />
 				    <br />
 				    <label for="country">country : </label> 
-				    <input name="orderby" id="country" type="checkbox" value="country" tabindex="23" />
+				    <input name="orderby" id="country" type="radio" value="country" tabindex="23" />
 				    <br />
 				    <label for="postalcode">postalcode : </label> 
-				    <input name="orderby" id="postalcode" type="checkbox" value="postalcode" tabindex="23" />
+				    <input name="orderby" id="postalcode" type="radio" value="postalcode" tabindex="23" />
 				    <br />
 				    <label for="phone">phone : </label> 
-				    <input name="orderby" id="phone" type="checkbox" value="phone" tabindex="23" />
+				    <input name="orderby" id="phone" type="radio" value="phone" tabindex="23" />
 				    <br />
 				    <label for="email">phone : </label> 
-				    <input name="orderby" id="email" type="checkbox" value="email" tabindex="23" />
+				    <input name="orderby" id="email" type="radio" value="email" tabindex="23" />
 				    <br />
 				</fieldset>
 				

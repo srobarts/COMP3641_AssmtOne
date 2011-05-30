@@ -64,21 +64,26 @@ public class ControllerServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//initialize session variable for icon
+		//initialize session variables
 		HttpSession session = request.getSession();
 		session.setAttribute("icon", "seated");
+		session.setAttribute("requestType", "query");
+		session.setAttribute("insertStatus", "valid");
 		String sqlResult = "";
 		//String sqlStatement =  request.getParameter("query");
 		
 		
 		String requestedAction = request.getParameter("action");
-		if(requestedAction.equals("query")) {
+		if(requestedAction.equals("")) {
+			//submit is clicked with no attached action - just sent user to start page
+			String url = "/start.html";
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
+			dispatcher.forward(request, response);
+		} else if(requestedAction.equals("query")) {
 			//query the database - send the user back to the view (query.jsp)
 			String url = "/WEB-INF/jsp/query.jsp";
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
-			dispatcher.forward(request, response);
-			//note - include call will boomerang control back to servlet when jsp is done processing
-			
+			dispatcher.forward(request, response);			
 		} else if(requestedAction.equals("add")) {
 			//update the database
 			String url = "/WEB-INF/jsp/addrecord.jsp";
@@ -90,16 +95,27 @@ public class ControllerServlet extends HttpServlet {
 			//query database and display result
 			
 			//gather select query information
-			/*String[] selectCheckboxes = request.getParameterValues("select");
+			
+			//get the SELECT values
+			String query = "SELECT ";
+			String select = "";
+			String[] selectCheckboxes = request.getParameterValues("select");
 			if (selectCheckboxes != null)
 			{
 				for (int i = 0; i < selectCheckboxes.length; ++i)
 				{
-					String selectInputs = selectCheckboxes[i];
+					select = selectCheckboxes[i];
+					query = query + select + " ";
 				}
-			}*/
+			}
+			//add FROM
+			query = query + " FROM a00222500 ";
 			
-			String queryString = "SELECT * FROM a00222500_Members";
+			//add WHERE
+			String where = request.getParameterValues("where");
+			query = query + where + " ";
+			
+			String queryString = "SELECT * FROM a00222500_Members ORDER BY MemberID";
 			db.setQueryString(queryString);
 			@SuppressWarnings("rawtypes")
 			Vector tableData = db.runQuery();
@@ -127,6 +143,8 @@ public class ControllerServlet extends HttpServlet {
 			//db.cleanUp();
 			
 			//send results to results page
+			session.setAttribute("requestType", "query");
+			session.setAttribute("insertStatus", "valid");
 			session.setAttribute("queryString", queryString);
 			session.setAttribute("sqlResult", sqlResult);
 			String url2 = "/WEB-INF/jsp/output.jsp";
@@ -158,6 +176,9 @@ public class ControllerServlet extends HttpServlet {
 				maxID = db.getMaxID();
 				maxID++;
 				
+				System.out.println("servlet");
+				System.out.println(maxID);
+				
 				String query = "INSERT INTO a00222500_Members VALUES " +
 								"('" + firstName + "'," +
 								"'" + lastName + "'," +
@@ -174,6 +195,7 @@ public class ControllerServlet extends HttpServlet {
 			
 				//display output to show that record has been created
 				String queryString = "SELECT * FROM a00222500_Members WHERE memberID = " + maxID;
+				System.out.println(queryString);
 				db.setQueryString(queryString);
 				@SuppressWarnings("rawtypes")
 				Vector tableData = db.runQuery();
@@ -198,6 +220,8 @@ public class ControllerServlet extends HttpServlet {
 				}
 				
 				//send results to results page
+				session.setAttribute("requestType", "insert");
+				session.setAttribute("insertStatus", "valid");
 				session.setAttribute("queryString", queryString);
 				session.setAttribute("sqlResult", sqlResult);
 				String url2 = "/WEB-INF/jsp/output.jsp";
@@ -205,9 +229,10 @@ public class ControllerServlet extends HttpServlet {
 				dispatcher.forward(request, response);
 			
 			} else {
+				session.setAttribute("requestType", "insert");
 				System.out.println("invalid");
 				//display message saying that input was invalid
-				session.setAttribute("resultCode", false);
+				session.setAttribute("insertStatus", "invalid");
 				String url2 = "/WEB-INF/jsp/output.jsp";
 				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url2);
 				dispatcher.forward(request, response);
@@ -290,6 +315,8 @@ public class ControllerServlet extends HttpServlet {
 			}
 			
 			//send results to results page
+			session.setAttribute("requestType", "update");
+			session.setAttribute("insertStatus", "valid");
 			String queryString = db.getQueryString();
 			session.setAttribute("queryString", queryString);
 			session.setAttribute("sqlResult", sqlResult);
@@ -327,6 +354,8 @@ public class ControllerServlet extends HttpServlet {
 			}
 			
 			//send results to results page
+			session.setAttribute("requestType", "delete");
+			session.setAttribute("insertStatus", "valid");
 			String queryString = db.getQueryString();
 			session.setAttribute("queryString", queryString);
 			session.setAttribute("sqlResult", sqlResult);

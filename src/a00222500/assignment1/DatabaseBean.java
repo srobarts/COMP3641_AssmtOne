@@ -151,9 +151,11 @@ public class DatabaseBean
 		int maxID = 0;
 		try {
 			stmt = con.createStatement();
-			rs = stmt.executeQuery("select max(id) from topic");
+			rs = stmt.executeQuery("SELECT * FROM a00222500_Members WHERE MemberID = (SELECT MAX( MemberID ) FROM a00222500_Members)");
 			while(rs.next()) {
 				maxID = rs.getInt("memberID");
+				System.out.println("bean");
+				System.out.println(maxID);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

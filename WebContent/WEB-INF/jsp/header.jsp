@@ -6,6 +6,50 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" type="text/css" href="styles.css" >
 <title>Java Address Book</title>
+
+	<SCRIPT language="javascript" type="text/javascript"> 
+
+		re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+		regexp = /^\(?(\d{3})\)?[\.\-\/ ]?(\d{3})[\.\-\/ ]?(\d{4})$/;
+
+		function submitIt(myForm)
+		{
+			errMsg = "";
+			if(myForm.firstName.value == ""){
+				errMsg = errMsg + "Please fill in your first name\n";
+			}
+			if(myForm.lastName.value == ""){
+				errMsg = errMsg + "Please fill in your last name\n";
+			}
+			if(myForm.address.value == ""){
+				errMsg = errMsg + "Please fill in your address\n";
+			}
+			if(myForm.city.value == ""){
+				errMsg = errMsg + "Please fill in city\n";
+			}
+			if(myForm.country.value == ""){
+				errMsg = errMsg + "Please fill in country\n";
+			}
+			if(myForm.code.value == ""){
+				errMsg = errMsg + "Please fill in your postal code\n";
+			}
+			if (!regexp.test(myForm.phoneNumber.value)) {
+				errMsg = errMsg + "Your phone number has been incorrectly formatted\nshould be in form 604-555-1212\n";
+			}
+			if (!re.test(myForm.email.value)) {
+				errMsg = errMsg + "Your email address has been incorrectly formatted\nshould be in form name@server.com\n";
+			}
+
+			if(errMsg != ""){
+				alert(errMsg);
+				myForm.focus();
+				return false;
+			}
+			return true;
+		}
+	 </SCRIPT>
+
+
 </head>
 
 <body>

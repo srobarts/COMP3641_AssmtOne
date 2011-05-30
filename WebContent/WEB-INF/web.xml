@@ -6,6 +6,28 @@
     <welcome-file>home.html</welcome-file>
   </welcome-file-list>
   
+  <context-param>
+    <param-name>qmessage</param-name>
+    <param-value>Here is the result of your query:</param-value>
+  </context-param>
+  <context-param>
+    <param-name>imessage</param-name>
+    <param-value>Record inserted successfully:</param-value>
+  </context-param>
+  <context-param>
+    <param-name>updatemessage</param-name>
+    <param-value>Record updated successfully:</param-value>
+  </context-param>
+  <context-param>
+    <param-name>deletemessage</param-name>
+    <param-value>Record deleted successfully:</param-value>
+  </context-param>
+  <context-param>
+    <param-name>refreshmessage</param-name>
+    <param-value>Application will return to start page in 5 seconds</param-value>
+  </context-param>
+  
+  
   <servlet>
     <servlet-name>ControllerServlet</servlet-name>
     <servlet-class>a00222500.assignment1.ControllerServlet</servlet-class>

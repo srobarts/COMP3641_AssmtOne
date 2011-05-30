@@ -1,6 +1,6 @@
 
 
-<jsp:include page="header.html"></jsp:include>
+<jsp:include page="header.jsp"></jsp:include>
 
 	<%@ page isErrorPage="true" import="java.io.*" %>
 	

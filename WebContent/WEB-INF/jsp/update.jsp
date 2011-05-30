@@ -1,4 +1,4 @@
-<jsp:include page="header.html"></jsp:include>
+<jsp:include page="header.jsp"></jsp:include>
 
 <%@ page errorPage="/WEB-INF/jsp/errorPage.jsp" %>
 
