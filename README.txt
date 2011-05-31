@@ -3,11 +3,15 @@
 COMP 3641 - Java Web Application Development
 Assignment 1
 
+By:  Scott Robarts, A00222500
+
 README
 **********************************************
 
-Application is run from the home.html page - but is designed to run if user simply
-navigates to directory.
+IMPORTANT:  Application is run from the home.html file
+
+ALSO:  Simply going to directory will launch home.html automatically
+
 
 Some messaging is configured in the web.xml file for easy changes
 

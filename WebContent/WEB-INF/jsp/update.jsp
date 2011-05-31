@@ -16,7 +16,7 @@
 	<h2>Update record below:</h2>
 	
 		<div id="stylized" class="myform">
-		<form id="form" name="form" method="post" action="query_database">
+		<form id="form" name="form" method="post" action="query_database" onSubmit="return submitIt(this)">
 		<input name="action" type="hidden" value="updaterecord" />
 		
 			<div>

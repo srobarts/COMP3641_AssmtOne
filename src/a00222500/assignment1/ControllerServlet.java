@@ -95,25 +95,26 @@ public class ControllerServlet extends HttpServlet {
 			//query database and display result
 			
 			//gather select query information
+			String queryString = "SELECT ";
+			
+			//first get the MemberID
+			String memberID = request.getParameter("memberID");
+			queryString = queryString + memberID + " AS 'ID'";
 			
 			//get the SELECT values
-			String queryString = "SELECT ";
 			String select = "";
 			String[] selectCheckboxes = request.getParameterValues("select");
 			if (selectCheckboxes != null)
 			{
 				//first one gets no comma
 				select = selectCheckboxes[0];
-				if(select.equals("memberID")) {
-					queryString = queryString + select + " AS 'ID'";
-				}
 				
-				for (int i = 1; i < selectCheckboxes.length; ++i)
+				for (int i = 0; i < selectCheckboxes.length; ++i)
 				{
 					//then the rest
 					select = selectCheckboxes[i];
 					queryString = queryString + ", " + select;
-					System.out.println(select);
+	
 					if(select.equals("firstName")) {
 						queryString = queryString + " AS 'First Name'";
 					} else if(select.equals("lastName")) {

@@ -21,8 +21,8 @@
 				<fieldset id="select">
 				    <legend>SELECT</legend>
 				    <p>Choose what items to include in SELECT ...</p><br />
-				    <label for="userid">User ID: </label>
-				    <input name="select" id="userid" type="checkbox" checked="checked" value="memberID" tabindex="20" />
+				    <!--  <label for="userid">User ID: </label> -->
+				    <input name="memberID" id="memberID" type="hidden" value="memberID" tabindex="20" />
 				    <br />
 				    <label for="firstname">firstname : </label> 
 				    <input name="select" id="firstname" type="checkbox" checked="checked" value="firstName" tabindex="21" />
