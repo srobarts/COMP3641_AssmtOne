@@ -1,37 +1,27 @@
-
-
 <jsp:include page="header.jsp"></jsp:include>
 
 	<%@ page isErrorPage="true" import="java.io.*" %>
 	
 	<div id="content">
-		<div id="error_output">
+		<h1>An Error Has Occured</h1>
+	
+		<div id="tabblock">
+			<form id="form" name="form" method="post" action="query_database">
+						<input type="radio" name="action" value="query"  />Query
+						<input type="radio" name="action" value="add"  />Add Record
+				<button type="submit">Submit</button>
+			</form>
+		</div>
 		
-			<h2><%= pageContext.getServletConfig().getInitParameter("errorMessage") %></h2>
-			
-			<h4><%= pageContext.getServletConfig().getInitParameter("errorQueryMessage") %></h4>
-			<jsp:useBean id="DatabaseBean" class="a00222500.assignment1.DatabaseBean" scope="session" />
-			<jsp:getProperty name="DatabaseBean" property="queryString" />
-			
-			<h4><%= pageContext.getServletConfig().getInitParameter("errorSummaryMessage") %></h4>			
-			<font color="red">
-				<%= exception.toString() %><br>
-			</font>
-			
-			<h4><%= pageContext.getServletConfig().getInitParameter("errorDetailMessage") %></h4>
-			<p>
-			<%
-				StringWriter sw = new StringWriter();
-				PrintWriter pw = new PrintWriter(sw);
-				exception.printStackTrace(pw);
-				out.print(sw);
-				sw.close();
-				pw.close();
-			%>
-			</p>
-			<br />
-			<h2 class="link"><a href="Lab04.jsp"><%= pageContext.getServletConfig().getInitParameter("linkText") %></a></h2>
+		<div id="error_output">
+
+			<h3>Request that failed: ${pageContext.errorData.requestURI}</h3>
+			<h3>Status code: ${pageContext.errorData.statusCode}</h3>
+			<h3>Exception: ${pageContext.errorData.throwable}</h3>
+			<h3>${pageContext.errorData.servletName}</h3>
+				<br /><br />
 		</div> <!-- error_output -->
+		
 	</div> <!-- content -->
 	
 <jsp:include page="footer.html"></jsp:include>

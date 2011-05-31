@@ -9,7 +9,7 @@
 	<div id="tabblock">
 		<form id="form" name="form" method="post" action="query_database">
 					<input type="radio" name="action" value="query"  />Query Again
-					<input type="radio" name="action" value="add"  />Add a Record
+					<input type="radio" name="action" value="add"  />Add Record
 			<button type="submit">Submit</button>
 		</form>
 	</div>

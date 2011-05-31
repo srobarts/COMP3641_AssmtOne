@@ -4,7 +4,16 @@
 
 <div id="content">
 	<h1>Query Database</h1>
-	<br />
+	
+	<div id="tabblock">
+		<form id="form" name="form" method="post" action="query_database">
+					<input type="radio" name="action" value="query"  />Query
+					<input type="radio" name="action" value="add"  />Add Record
+			<button type="submit">Submit</button>
+		</form>
+	</div>
+	
+	<div>
 			<form id="two" name="form" method="post" action="query_database">
 				<!-- hidden input to tell controller servlet what we are doing -->
 				<input name="action" type="hidden" value="newquery" />
@@ -84,8 +93,8 @@
 				    <legend>ASC/DESC</legend>
 				    <p>Choose ASCENDING or DESCENDING sort order ...</p><br />
 				    <select name="sort_order">
-				      <option selected="selected" label="asc" value="asc">ASC</option>
-				      <option label="desc" value="desc">DESC</option>
+				      <option selected="selected" label="asc" value="ASC">ASC</option>
+				      <option label="desc" value="DESC">DESC</option>
 					</select>
 				</fieldset>
 				
@@ -94,6 +103,11 @@
   				</p>
 				
 			</form>
+			
+		</div>
+		<div id="spacer">&nbsp;</div>
+		<div id="spacer">&nbsp;</div>
+		<div class="clearing">&nbsp;</div>
 </div>
 
 <jsp:include page="footer.html"></jsp:include>

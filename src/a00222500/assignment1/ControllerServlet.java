@@ -24,7 +24,7 @@ public class ControllerServlet extends HttpServlet {
 	private DatabaseBean db;
 	private final String REG_PHONE = "(\\()?(\\d{3})(\\))?([\\.\\-\\/ ])?(\\d{3})([\\.\\-\\/ ])?(\\d{4})";
 	private final String REG_EMAIL = "(\\w)([\\.-]?\\w+)*@(\\w+)([\\.-]?\\w+)*(\\.\\w{2,3})";
-	private final String REG_STRING = "^[a-zA-Z']{1,40}$";
+	private final String REG_STRING = "^[a-zA-Z' ]{1,40}$";
 
 	/**
 	 * servletInit() retrieves database information from web.xml and connects to database
@@ -104,13 +104,33 @@ public class ControllerServlet extends HttpServlet {
 			{
 				//first one gets no comma
 				select = selectCheckboxes[0];
-				queryString = queryString + select;
+				if(select.equals("memberID")) {
+					queryString = queryString + select + " AS 'ID'";
+				}
 				
 				for (int i = 1; i < selectCheckboxes.length; ++i)
 				{
 					//then the rest
 					select = selectCheckboxes[i];
 					queryString = queryString + ", " + select;
+					System.out.println(select);
+					if(select.equals("firstName")) {
+						queryString = queryString + " AS 'First Name'";
+					} else if(select.equals("lastName")) {
+						queryString = queryString + " AS 'Last Name'";
+					} else if(select.equals("address")) {
+						queryString = queryString + " AS 'Address'";
+					} else if(select.equals("city")) {
+						queryString = queryString + " AS 'City'";
+					} else if(select.equals("country")) {
+						queryString = queryString + " AS 'Country'";
+					} else if(select.equals("code")) {
+						queryString = queryString + " AS 'Postal Code'";
+					} else if(select.equals("phoneNumber")) {
+						queryString = queryString + " AS 'Phone Number'";
+					} else if(select.equals("email")) {
+						queryString = queryString + " AS 'Email'";
+					}
 				}
 			}
 			//add FROM
@@ -118,11 +138,17 @@ public class ControllerServlet extends HttpServlet {
 			
 			//add WHERE
 			String where = request.getParameter("where");
-			queryString = queryString + where + " ";
+			if(!(where == "")) {
+				queryString = queryString + " WHERE " + where;
+			}
 			
 			//add ORDER BY
 			String radio = request.getParameter("orderby");
-			queryString = queryString + "ORDER BY " + radio;
+			queryString = queryString + " ORDER BY " + radio;
+			
+			//add ASC/DESC
+			String sort_order = request.getParameter("sort_order");
+			queryString = queryString + " " + sort_order;
 			
 			System.out.println("query:");
 			System.out.println(queryString);
@@ -375,8 +401,6 @@ public class ControllerServlet extends HttpServlet {
 			dispatcher.forward(request, response);
 			
 		}
-		
-		
 		
 		
 	}

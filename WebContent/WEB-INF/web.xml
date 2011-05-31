@@ -58,12 +58,14 @@
     <url-pattern>/query_database</url-pattern>
   </servlet-mapping>
   
-  <error-page>
-    <exception-type>java.lang.Throwable</exception-type>
-    <location>/errorPage.jsp</location>
-  </error-page>
-  <error-page>
-    <exception-type>javax.servlet.SQLException</exception-type>
-    <location>/errorPage.jsp</location>
-  </error-page>
+ 	<error-page>
+		<exception-type>java.lang.Throwable</exception-type>
+	    <location>/WEB-INF/jsp/errorPage.jsp</location>
+	</error-page>
+	<error-page>
+	    <exception-type>javax.servlet.SQLException</exception-type>
+	    <location>/WEB-INF/jsp/errorPage.jsp</location>
+	</error-page>
+  
+  
 </web-app>

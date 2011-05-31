@@ -82,8 +82,8 @@ img.header_image {
 	float:left;
 	width:90%;
 	padding-top:5px;
-	padding-left:40px;
-	padding-right:40px;
+	padding-left:15px;
+	padding-right:15px;
 }
 
 #content h1 {
@@ -119,6 +119,16 @@ img.header_image {
 #right_float {
 	float:right;
 	width:50%;
+}
+
+/* ---------- Home Content ------- */
+
+#homecontent {
+	float:left;
+	width:90%;
+	padding-top:5px;
+	padding-left:150px;
+	padding-right:15px;
 }
 
 
@@ -217,7 +227,7 @@ table, th, td {
     font-weight: bold;
     height: 40px;
     text-align: right;
-    width: 900px;
+    width: 970px;
 }
 
 /* ----------- stylized ----------- */
@@ -267,12 +277,45 @@ table, th, td {
 	margin:2px 0 20px 10px;
 }
 
+#radioblock input{
+	float:left;
+	font-size:12px;
+	padding:4px;
+	border:none;
+	width:50px;
+	margin:0 0 0 0;
+}
+
 
 #stylized button{
 	clear:both;
 	margin-left:150px;
 	width:125px;
 	height:31px;
+	background:#666666 url(img/button.png) no-repeat;
+	text-align:center;
+	line-height:31px;
+	color:#FFFFFF;
+	font-size:11px;
+	font-weight:bold;
+}
+
+#tabblock button{
+	clear:both;
+	width:90px;
+	height:20px;
+	background:#666666 url(img/button.png) no-repeat;
+	text-align:center;
+	line-height:20px;
+	color:#FFFFFF;
+	font-size:11px;
+	font-weight:bold;
+}
+
+#tablecontent button{
+	clear:both;
+	width:70px;
+	height:20px;
 	background:#666666 url(img/button.png) no-repeat;
 	text-align:center;
 	line-height:31px;

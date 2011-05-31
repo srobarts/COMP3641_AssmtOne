@@ -4,7 +4,15 @@
 
 <div id="content">
 	<h1>Update Record to Database</h1>
-	<br />
+	
+	<div id="tabblock">
+		<form id="form" name="form" method="post" action="query_database">
+					<input type="radio" name="action" value="query"  />Query
+					<input type="radio" name="action" value="add"  />Add Record
+			<button type="submit">Submit</button>
+		</form>
+	</div>
+	
 	<h2>Update record below:</h2>
 	
 		<div id="stylized" class="myform">
