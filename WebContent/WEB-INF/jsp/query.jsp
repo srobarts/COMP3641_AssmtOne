@@ -13,13 +13,13 @@
 				    <legend>SELECT</legend>
 				    <p>Choose what items to include in SELECT ...</p><br />
 				    <label for="userid">User ID: </label>
-				    <input name="select" id="userid" type="checkbox" checked="checked" value="userid" tabindex="20" />
+				    <input name="select" id="userid" type="checkbox" checked="checked" value="memberID" tabindex="20" />
 				    <br />
 				    <label for="firstname">firstname : </label> 
-				    <input name="select" id="firstname" type="checkbox" checked="checked" value="firstname" tabindex="21" />
+				    <input name="select" id="firstname" type="checkbox" checked="checked" value="firstName" tabindex="21" />
 				    <br />
 				    <label for="lastname">lastname : </label> 
-				    <input name="select" id="lastname" type="checkbox" checked="checked" value="lastname" tabindex="22" />
+				    <input name="select" id="lastname" type="checkbox" checked="checked" value="lastName" tabindex="22" />
 				    <br />
 				    <label for="address">address : </label> 
 				    <input name="select" id="address" type="checkbox" checked="checked" value="address" tabindex="23" />
@@ -31,10 +31,10 @@
 				    <input name="select" id="country" type="checkbox" checked="checked" value="country" tabindex="23" />
 				    <br />
 				    <label for="postalcode">postalcode : </label> 
-				    <input name="select" id="postalcode" type="checkbox" checked="checked" value="postalcode" tabindex="23" />
+				    <input name="select" id="postalcode" type="checkbox" checked="checked" value="code" tabindex="23" />
 				    <br />
 				    <label for="phone">phone : </label> 
-				    <input name="select" id="phone" type="checkbox" checked="checked" value="phone" tabindex="23" />
+				    <input name="select" id="phone" type="checkbox" checked="checked" value="phoneNumber" tabindex="23" />
 				    <br />
 				    <label for="email">phone : </label> 
 				    <input name="select" id="email" type="checkbox" checked="checked" value="email" tabindex="23" />
@@ -45,20 +45,20 @@
 				    <legend>WHERE</legend>
 				    <p>Qualifying WHERE clause ...</p><br />
 				    <label for="where">WHERE : </label> 
-				    <input name="where" size="50" id="where" type="text" tabindex="1" />
+				    <input name="where" size="50" type="text" />
 				</fieldset>
 				
 				<fieldset id="orderby">
 				    <legend>ORDER BY</legend>
 				    <p>Choose what items to ORDER BY ...</p><br />
 				    <label for="userid">User ID: </label>
-				    <input name="orderby" id="userid" type="radio" value="userid" tabindex="20" />
+				    <input name="orderby" id="userid" type="radio" value="memberID" tabindex="20" />
 				    <br />
 				    <label for="firstname">firstname : </label> 
-				    <input name="orderby" id="firstname" type="radio" value="firstname" tabindex="21" />
+				    <input name="orderby" id="firstname" type="radio" value="firstName" tabindex="21" />
 				    <br />
 				    <label for="lastname">lastname : </label> 
-				    <input name="orderby" id="lastname" type="radio" checked="checked" value="lastname" tabindex="22" />
+				    <input name="orderby" id="lastname" type="radio" checked="checked" value="lastName" tabindex="22" />
 				    <br />
 				    <label for="address">address : </label> 
 				    <input name="orderby" id="address" type="radio" value="address" tabindex="23" />
@@ -70,10 +70,10 @@
 				    <input name="orderby" id="country" type="radio" value="country" tabindex="23" />
 				    <br />
 				    <label for="postalcode">postalcode : </label> 
-				    <input name="orderby" id="postalcode" type="radio" value="postalcode" tabindex="23" />
+				    <input name="orderby" id="postalcode" type="radio" value="code" tabindex="23" />
 				    <br />
 				    <label for="phone">phone : </label> 
-				    <input name="orderby" id="phone" type="radio" value="phone" tabindex="23" />
+				    <input name="orderby" id="phone" type="radio" value="phoneNumber" tabindex="23" />
 				    <br />
 				    <label for="email">phone : </label> 
 				    <input name="orderby" id="email" type="radio" value="email" tabindex="23" />

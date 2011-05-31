@@ -97,25 +97,36 @@ public class ControllerServlet extends HttpServlet {
 			//gather select query information
 			
 			//get the SELECT values
-			String query = "SELECT ";
+			String queryString = "SELECT ";
 			String select = "";
 			String[] selectCheckboxes = request.getParameterValues("select");
 			if (selectCheckboxes != null)
 			{
-				for (int i = 0; i < selectCheckboxes.length; ++i)
+				//first one gets no comma
+				select = selectCheckboxes[0];
+				queryString = queryString + select;
+				
+				for (int i = 1; i < selectCheckboxes.length; ++i)
 				{
+					//then the rest
 					select = selectCheckboxes[i];
-					query = query + select + " ";
+					queryString = queryString + ", " + select;
 				}
 			}
 			//add FROM
-			query = query + " FROM a00222500 ";
+			queryString = queryString + " FROM a00222500_Members ";
 			
 			//add WHERE
-			String where = request.getParameterValues("where");
-			query = query + where + " ";
+			String where = request.getParameter("where");
+			queryString = queryString + where + " ";
 			
-			String queryString = "SELECT * FROM a00222500_Members ORDER BY MemberID";
+			//add ORDER BY
+			String radio = request.getParameter("orderby");
+			queryString = queryString + "ORDER BY " + radio;
+			
+			System.out.println("query:");
+			System.out.println(queryString);
+			
 			db.setQueryString(queryString);
 			@SuppressWarnings("rawtypes")
 			Vector tableData = db.runQuery();
